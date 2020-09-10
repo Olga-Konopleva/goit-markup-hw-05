@@ -34,6 +34,8 @@ img {
 
 .decoration {
     list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 a {
@@ -79,11 +81,33 @@ a {
 }
 
 .navigation .link {
+    position: relative;
+
     font-weight: 500;
     font-size: 14px;
     line-height: 1.14;
     letter-spacing: 0.02em;
+    padding: 32px 0;
     color: var(--title-text-color);
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link.active {
+    color: var(--accent-color);
+}
+
+.navigation .active::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    content: '';
+    width: 100%;
+    height: 4px;
+    display: block;
+    border-radius: 2px;
+    background-color: var(--accent-color);
 }
 
 .contacts {
@@ -102,10 +126,12 @@ a {
     letter-spacing: 0.02em;
     font-style: normal;
     color: var(--primary-text-color);
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.accent:hover ,
-.accent:focus {
+.link:hover ,
+.link:focus {
     color: var(--accent-color);
 }
 
@@ -115,6 +141,8 @@ a {
     vertical-align: middle;
     margin-right: 10px;
     fill: var(--primary-text-color);
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contacts .link:hover .icon-mail,
@@ -130,6 +158,8 @@ a {
     vertical-align: middle;
     margin-right: 10px;
     fill: var(--primary-text-color);
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -176,6 +206,7 @@ a {
     font-size: 16px;
     line-height: 1.87;
     letter-spacing: 0.06em;
+    border: 0;
 
     color: var(--primary-white-color);
     background-color: var(--accent-color);
@@ -328,6 +359,8 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-item:not(:last-child) {
@@ -338,6 +371,8 @@ a {
     width: 20px;
     height: 20px;
     fill: #AFB1B8;
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link:hover,
@@ -371,10 +406,14 @@ a {
     border: 1px solid #afb1b8;
     border-radius: 4px;
 
+    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 .clients-icon {
     fill: currentColor;
+
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-link:hover,
@@ -438,6 +477,8 @@ a {
 
 .footer-social-link {
     background-color: rgba(255, 255, 255, 0.1);
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-icon.footer-icon {
@@ -537,4 +578,66 @@ a {
 
 .work-desc {
     padding: 20px 24px;
+}
+
+/* Модальное окно */
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%,-50%) scale(1);
+
+    min-width: 528px;
+    min-height: 581px;
+    background-color: var(--primary-white-color);
+
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden .modal {
+    transform: translate(-50%,-50%) scale(0.7);
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: var(--primary-white-color);
+}
+
+.close-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
 }
